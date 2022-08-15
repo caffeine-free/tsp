@@ -96,9 +96,14 @@ float descida_best_improvement(int n, vector<int> &s, float **d)
     limpa_arquivo((char *)"DescidaBI.txt");
     inicio_CPU = fim_CPU = clock();
     iter = 0;
-    imprime_fo((char *)"DescidaBI.txt", (fim_CPU - inicio_CPU) / CLOCKS_PER_SEC, fo, iter);
+    imprime_fo(
+        (char *)"DescidaBI.txt", 
+        (fim_CPU - inicio_CPU) / CLOCKS_PER_SEC, 
+        fo, 
+        iter
+    );
 
-    /*  Implementar a descida com estrategia best improvement */
+    // troca os melhores vizinhos enquanto há melhoria na fo
     do {
         melhorou = false;
         fo_viz = melhor_vizinho(n, s, d, fo, &melhor_i, &melhor_j);
@@ -112,7 +117,13 @@ float descida_best_improvement(int n, vector<int> &s, float **d)
     } while (melhorou);
     
     fim_CPU = clock();
-    imprime_fo((char *)"DescidaBI.txt", (fim_CPU - inicio_CPU) / CLOCKS_PER_SEC, fo, iter);
+    imprime_fo(
+        (char *)"DescidaBI.txt", 
+        (fim_CPU - inicio_CPU) / CLOCKS_PER_SEC, 
+        fo, 
+        iter
+    );
+    
     return fo;
 } // descida_best_improvement
 
