@@ -5,6 +5,7 @@
 #include <cmath>
 #include <iostream>
 #include <ctime>
+#include <climits>
 #include "GRASP.h"
 #include "Construcao.h"
 #include "Util.h"

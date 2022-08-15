@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
+#include <chrono>
 #include <algorithm>
 #include <random>
 #include <utility> //funcao swap (para versao anterior a C11 usar <algorithm>)
