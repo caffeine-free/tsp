@@ -85,8 +85,7 @@ float vizinho_aleatorio(int n, vector<int> &s, float **d, float fo, int *melhor_
 } // vizinho_aleatorio
 
 /* Método da descida com estrategia best improvement */
-float descida_best_improvement(int n, vector<int> &s, float **d)
-{
+float descida_best_improvement(int n, vector<int> &s, float **d) {
     int melhor_i, melhor_j, iter;
     float fo_viz, fo;
     bool melhorou;
