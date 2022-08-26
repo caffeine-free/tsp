@@ -73,11 +73,46 @@ float melhor_vizinho(int n, vector<int> &s, float **d, float fo, int *melhor_i, 
 } // melhor_vizinho
 
 // Vizinho aleatorio usado nas descidas e algumas meta-heurisiticas
-float vizinho_aleatorio(int n, vector<int> &s, float **d, float fo, int *melhor_i, int *melhor_j)
-{
+float vizinho_aleatorio(
+    int n, 
+    vector<int> &s, 
+    float **d, 
+    float fo, 
+    int *melhor_i, 
+    int *melhor_j
+) {
     float fo_viz = fo;
     int i, j;
     float delta1, delta2;
+    vector<int> vet;
+    
+    for (int i = 0; i < n; i++)
+        vet.push_back(i);
+
+    // Para c++ 11
+    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+    default_random_engine r(seed);
+    shuffle(vet.begin(), vet.end(), r);
+
+    i = *vet.begin();
+    j = *vet.end();
+
+    // Calcula a variacao de custo com a realizacao do movimento
+    delta1 = calcula_delta(n, s, d, i, j);
+
+    // Faz o movimento
+    swap(s[i], s[j]);
+
+    delta2 = calcula_delta(n, s, d, i, j);
+
+    // Calcular a nova distancia
+    fo_viz = fo - delta1 + delta2;
+
+    *melhor_i = i;
+    *melhor_j = j;
+
+    // desfaz o movimento
+    swap(s[i], s[j]);
 
     // retornar a distancia do  vizinho
     return fo_viz;
@@ -178,27 +213,27 @@ float vizinho_first_improvement(
     for (int i = 0; i < n - 1; i++) {
         for (int j = i + 1; j < n; j++) {
             // Calcula a variacao de custo com a realizacao do movimento
-            float delta1 = calcula_delta(n, s, d, i, j);
+            float delta1 = calcula_delta(n, s, d, vet.at(i), vet.at(j));
 
             // Faz o movimento
-            swap(s[i], s[j]);
+            swap(s[vet.at(i)], s[vet.at(j)]);
 
-            float delta2 = calcula_delta(n, s, d, i, j);
+            float delta2 = calcula_delta(n, s, d, vet.at(i), vet.at(j));
 
             // Calcular a nova distancia
             fo_viz = fo - delta1 + delta2;
 
             // Armazenar o melhor movimento (melhor troca)
             if (fo_viz < fo_melhor_viz) {
-                *melhor_i = i;
-                *melhor_j = j;
+                *melhor_i = vet.at(i);
+                *melhor_j = vet.at(j);
                 fo_melhor_viz = fo_viz;
 
                 melhorou = true;
             }
 
             // desfaz o movimento
-            swap(s[i], s[j]);
+            swap(s[vet.at(i)], s[vet.at(j)]);
             if (melhorou) return fo_melhor_viz;
         }
     }

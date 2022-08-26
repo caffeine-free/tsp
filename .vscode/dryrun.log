@@ -1,0 +1,48 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/gabriel/ufop/tsp'
+mkdir -p obj
+echo 'Building target using GCC compiler: src/AG.cpp'
+g++ src/AG.cpp -c -O3 -std=c++17 -Wall -o obj/AG.o
+echo ' '
+echo 'Building target using GCC compiler: src/Arquivos.cpp'
+g++ src/Arquivos.cpp -c -O3 -std=c++17 -Wall -o obj/Arquivos.o
+echo ' '
+echo 'Building target using GCC compiler: src/BT.cpp'
+g++ src/BT.cpp -c -O3 -std=c++17 -Wall -o obj/BT.o
+echo ' '
+echo 'Building target using GCC compiler: src/Construcao.cpp'
+g++ src/Construcao.cpp -c -O3 -std=c++17 -Wall -o obj/Construcao.o
+echo ' '
+echo 'Building target using GCC compiler: src/Descida.cpp'
+g++ src/Descida.cpp -c -O3 -std=c++17 -Wall -o obj/Descida.o
+echo ' '
+echo 'Building target using GCC compiler: src/GRASP.cpp'
+g++ src/GRASP.cpp -c -O3 -std=c++17 -Wall -o obj/GRASP.o
+echo ' '
+echo 'Building target using GCC compiler: src/ILS.cpp'
+g++ src/ILS.cpp -c -O3 -std=c++17 -Wall -o obj/ILS.o
+echo ' '
+echo 'Building target using GCC compiler: src/LAHC.cpp'
+g++ src/LAHC.cpp -c -O3 -std=c++17 -Wall -o obj/LAHC.o
+echo ' '
+echo 'Building target using GCC compiler: src/MS.cpp'
+g++ src/MS.cpp -c -O3 -std=c++17 -Wall -o obj/MS.o
+echo ' '
+echo 'Building target using GCC compiler: src/Menus.cpp'
+g++ src/Menus.cpp -c -O3 -std=c++17 -Wall -o obj/Menus.o
+echo ' '
+echo 'Building target using GCC compiler: src/SA.cpp'
+g++ src/SA.cpp -c -O3 -std=c++17 -Wall -o obj/SA.o
+echo ' '
+echo 'Building target using GCC compiler: src/Util.cpp'
+g++ src/Util.cpp -c -O3 -std=c++17 -Wall -o obj/Util.o
+echo ' '
+echo 'Building target using GCC compiler: src/main.cpp'
+g++ src/main.cpp -c -O3 -std=c++17 -Wall -o obj/main.o
+echo ' '
+echo 'Building binary using GCC linker: pcv'
+g++ obj/AG.o obj/Arquivos.o obj/BT.o obj/Construcao.o obj/Descida.o obj/GRASP.o obj/ILS.o obj/LAHC.o obj/MS.o obj/Menus.o obj/SA.o obj/Util.o obj/main.o -o pcv
+echo 'Finished building binary: pcv'
+echo ' '
+make: Leaving directory '/home/gabriel/ufop/tsp'
+ 
