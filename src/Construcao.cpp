@@ -181,15 +181,21 @@ void constroi_solucao_gulosa_insercao_mais_barata(int n, vector<int> *s, float *
 }
 
 /* Constroi uma solucao parcialmente gulosa pelo metodo do vizinho mais proximo */
-void constroi_solucao_parcialmente_gulosa_vizinho_mais_proximo(int n, vector<int> &s, float **d, float alpha)
-{
+void constroi_solucao_parcialmente_gulosa_vizinho_mais_proximo(
+    int n, 
+    vector<int> &s, 
+    float **d, 
+    float alpha
+) {
 
     vector<int> nao_visitadas;
-    int tamanho_LC;
+    vector<int> LRC;
+    
+    int tamanho_LC = n;
+    int tamanho_LRC = max(float(1), alpha * tamanho_LC);
 
     /* Inicio da Fase de Construcao de uma solucao */
-    for (int i = 1; i < n; i++)
-    {
+    for (int i = 1; i < n; i++) {
 
         /* vou inserir um registro no final de uma lista das cidades nao visitadas */
         nao_visitadas.push_back(i);
@@ -197,7 +203,7 @@ void constroi_solucao_parcialmente_gulosa_vizinho_mais_proximo(int n, vector<int
 
     // limpa solucao corrente
     s.clear();
-    s.push_back(0); /* A cidade origem � a cidade 0 */
+    s.push_back(0); /* A cidade origem é a cidade 0 */
 
     // Ordena lista
     ordena_dist_crescente ordem;
@@ -209,14 +215,31 @@ void constroi_solucao_parcialmente_gulosa_vizinho_mais_proximo(int n, vector<int
 
     int j = 1;
     int cidade_escolhida;
-    while (j < n)
-    {
+    while (j < n) {
+        float g_min = ordem.d[ordem.index][nao_visitadas[0]];
+        float g_max = ordem.d[ordem.index][nao_visitadas[nao_visitadas.size() - 1]];
+        float gt = g_min + alpha * (g_max - g_min);
 
-        /*
-         *
-         *   Implementar construção da solução elemento por elemento
-         *
-         */
+        for (int nao_visitada : nao_visitadas) {
+            cidade_escolhida = ordem.d[ordem.index][nao_visitada];
+            
+            if (cidade_escolhida <= gt && LRC.size() < tamanho_LRC) {
+                LRC.push_back(nao_visitada);
+            }
+        }
+
+        cidade_escolhida = LRC.at(rand() % LRC.size());
+        LRC.clear();
+
+        s.push_back(cidade_escolhida);
+        ordem.index = s[s.size() - 1];
+
+        nao_visitadas.erase(
+            remove(nao_visitadas.begin(), nao_visitadas.end(), cidade_escolhida), 
+            nao_visitadas.end()
+        );
+
+        j++;
     }
 }
 
