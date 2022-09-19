@@ -26,6 +26,7 @@ Atualizado por Puca Huachi em ago/2019
 #include "MS.h"
 #include "SA.h"
 #include "GRASP.h"
+#include "LAHC.h"
 
 //---------------------------------------------------------------------------
 using namespace std;
@@ -167,7 +168,6 @@ int main(int argc, char *argv[])
             printf("Funcao objetivo = %f\n", fo);
             printf("Tempo de CPU = %f segundos:\n", (double)(fim_CPU - inicio_CPU) / CLOCKS_PER_SEC);
             break;
-            break;
 
         case 10: /* VND */
             printf("Nao implementado\n");
@@ -190,7 +190,13 @@ int main(int argc, char *argv[])
             break;
 
         case 13: /* LAHC */
-            printf("LAHC nao implementado\n");
+            inicio_CPU = clock();     
+            fo = LAHC(n, s, d, 10, 10 * n);
+            fim_CPU = clock();
+            printf("\nSolucao obtida usando a estrategia LAHC\n");
+            imprime_rota(s, n);
+            printf("Funcao objetivo = %f\n", fo);
+            printf("Tempo de CPU = %f segundos:\n", (double)(fim_CPU - inicio_CPU) / CLOCKS_PER_SEC);
             break;
 
         case 14: /* Algoritmos Memeticos */

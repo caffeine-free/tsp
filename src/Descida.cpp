@@ -95,7 +95,7 @@ float vizinho_aleatorio(
     shuffle(vet.begin(), vet.end(), r);
 
     i = *vet.begin();
-    j = *vet.end();
+    j = *(vet.end() - 1);
 
     // Calcula a variacao de custo com a realizacao do movimento
     delta1 = calcula_delta(n, s, d, i, j);
