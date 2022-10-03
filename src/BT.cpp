@@ -11,21 +11,21 @@
 #include "Arquivos.h"
 #include "BT.h"
 
-bool eh_tabu(int posicao1, int posicao2, int iterAtual, int **listaTabu)
-{
+bool eh_tabu(int posicao1, int posicao2, int iterAtual, int **listaTabu) {
     return iterAtual <= listaTabu[posicao1][posicao2];
 }
 
-float melhor_vizinho_BT(int n,
-                        vector<int> &s,
-                        float **d,
-                        float fo,
-                        int *melhor_i,
-                        int *melhor_j,
-                        float fo_star,
-                        int iterAtual,
-                        int **listaTabu)
-{
+float melhor_vizinho_BT(
+    int n,
+    vector<int> &s,
+    float **d,
+    float fo,
+    int *melhor_i,
+    int *melhor_j,
+    float fo_star,
+    int iterAtual,
+    int **listaTabu
+) {
     int aux;
     float fo_melhor_viz = INT_MAX; //Pode aceitar solução de piora
 
@@ -59,9 +59,13 @@ float melhor_vizinho_BT(int n,
     return fo_melhor_viz;
 }
 
-float BT(int n, vector<int> &s, float **d, int tamanho_maximo_lista, int BTmax)
-{
-
+float BT(
+    int n, 
+    vector<int> &s, 
+    float **d, 
+    int tamanho_maximo_lista, 
+    int BTmax
+) {
     int melhor_i, melhor_j;
     int iterBT = 0;  // numero corrente de iteracoes da Busca Tabu
     int MelhorIter = 0; // Iteracao em que ocorreu a melhor solucao
@@ -85,8 +89,19 @@ float BT(int n, vector<int> &s, float **d, int tamanho_maximo_lista, int BTmax)
     inicio_CPU = fim_CPU = clock();
     limpa_arquivo((char*)"BT.txt");     // Todas as soluções
     limpa_arquivo((char*)"BT_Melhorfo.txt");  // Somente as soluções de melhora
-    imprime_fo((char*)"BT.txt", (float)(fim_CPU - inicio_CPU)/CLOCKS_PER_SEC, fo, iterBT);
-    imprime_fo((char*)"BT_Melhorfo.txt", (float)(fim_CPU - inicio_CPU)/CLOCKS_PER_SEC, fo_star, iterBT);
+    imprime_fo(
+        (char*)"BT.txt", 
+        (float)(fim_CPU - inicio_CPU) / CLOCKS_PER_SEC, 
+        fo, 
+        iterBT
+    );
+
+    imprime_fo(
+        (char*)"BT_Melhorfo.txt", 
+        (float)(fim_CPU - inicio_CPU) / CLOCKS_PER_SEC, 
+        fo_star, 
+        iterBT
+    );
 
     /*
      *
@@ -94,10 +109,20 @@ float BT(int n, vector<int> &s, float **d, int tamanho_maximo_lista, int BTmax)
      *
      */
 
-
     fim_CPU = clock();
-    imprime_fo((char*)"BT.txt", (float)(fim_CPU - inicio_CPU)/CLOCKS_PER_SEC, fo, iterBT);
-    imprime_fo((char*)"BT_Melhorfo.txt", (float)(fim_CPU - inicio_CPU)/CLOCKS_PER_SEC, fo_star, iterBT);
+    imprime_fo(
+        (char*)"BT.txt", 
+        (float)(fim_CPU - inicio_CPU) / CLOCKS_PER_SEC, 
+        fo, 
+        iterBT
+    );
+    
+    imprime_fo(
+        (char*)"BT_Melhorfo.txt", 
+        (float)(fim_CPU - inicio_CPU) / CLOCKS_PER_SEC, 
+        fo_star, 
+        iterBT
+    );
 
     s = s_star;
     fo = fo_star;
@@ -105,5 +130,4 @@ float BT(int n, vector<int> &s, float **d, int tamanho_maximo_lista, int BTmax)
     libera_matriz(listaTabu, n);
 
     return fo;
-
 }

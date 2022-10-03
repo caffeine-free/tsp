@@ -27,6 +27,8 @@ Atualizado por Puca Huachi em ago/2019
 #include "SA.h"
 #include "GRASP.h"
 #include "LAHC.h"
+#include "BT.h"
+#include "ILS.h"
 
 //---------------------------------------------------------------------------
 using namespace std;
@@ -151,11 +153,23 @@ int main(int argc, char *argv[])
             break;
 
         case 7: /* Busca Tabu */
-            printf("Nao implementado\n");
+            inicio_CPU = clock();     
+            fo = BT(n, s, d, 10, 10 * n);
+            fim_CPU = clock();
+            printf("\nSolucao obtida usando a estrategia Busca Tabu\n");
+            imprime_rota(s, n);
+            printf("Funcao objetivo = %f\n", fo);
+            printf("Tempo de CPU = %f segundos:\n", (double)(fim_CPU - inicio_CPU) / CLOCKS_PER_SEC);
             break;
 
         case 8: /* Iterated Local Search */
-            printf("Nao implementado\n");
+            inicio_CPU = clock();     
+            fo = ILS(n, s, d, 10, 10 * n);
+            fim_CPU = clock();
+            printf("\nSolucao obtida usando a estrategia Iterated Local Search\n");
+            imprime_rota(s, n);
+            printf("Funcao objetivo = %f\n", fo);
+            printf("Tempo de CPU = %f segundos:\n", (double)(fim_CPU - inicio_CPU) / CLOCKS_PER_SEC);
             break;
 
         case 9: /* GRASP */
