@@ -21,21 +21,21 @@ float gera_um_vizinho_qualquer( int n,
 
 // Gera um vizinho qualquer usando o movimento de troca
 float vizinho_troca_qualquer(int n,
-                             vector<int> *s, 
+                             vector<int> &s, 
                              float **d, 
                              float fo);
 
 // Gera um vizinho qualquer usando o movimento de re-inserir 
 // um cliente em outra posicao da rota
 float vizinho_reinsercao1_qualquer(int n,
-                             vector<int> *s, 
+                             vector<int> &s, 
                              float **d, 
                              float fo);
 
 // Gera um vizinho qualquer usando o movimento de re-inserir 
 // dois clientes consecutivos em outra posicao da rota
 float vizinho_reinsercao2_qualquer(int n,
-                             vector<int> *s, 
+                             vector<int> &s, 
                              float **d, 
                              float fo);
 

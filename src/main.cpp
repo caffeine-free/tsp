@@ -29,6 +29,7 @@ Atualizado por Puca Huachi em ago/2019
 #include "LAHC.h"
 #include "BT.h"
 #include "ILS.h"
+#include "VNS.h"
 
 //---------------------------------------------------------------------------
 using namespace std;
@@ -175,7 +176,7 @@ int main(int argc, char *argv[])
         case 9: /* GRASP */
             inicio_CPU = clock();     
             alpha = 0.3;
-            fo = GRASP(n, s, d, alpha, 700);
+            fo = VNS(n, s, d, 10 * n, 3);
             fim_CPU = clock();
             printf("\nSolucao obtida usando a estrategia GRASP\n");
             imprime_rota(s, n);
@@ -188,7 +189,14 @@ int main(int argc, char *argv[])
             break;
 
         case 11: /* VNS */
-            printf("Nao implementado\n");
+            inicio_CPU = clock();     
+            alpha = 0.3;
+            fo = GRASP(n, s, d, alpha, 700);
+            fim_CPU = clock();
+            printf("\nSolucao obtida usando a estrategia VNS\n");
+            imprime_rota(s, n);
+            printf("Funcao objetivo = %f\n", fo);
+            printf("Tempo de CPU = %f segundos:\n", (double)(fim_CPU - inicio_CPU) / CLOCKS_PER_SEC);
             break;
 
         case 12: /* Algoritmos Geneticos */
